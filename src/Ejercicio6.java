@@ -20,23 +20,17 @@ public class Ejercicio6 {
         // TODO code application logic here
         Scanner leer=new Scanner (System.in);
         int cuadrado [][]=new int[3][3];
-        int diagP=0;
-        boolean magico=true;
+        int diagP=0,cont=0,fila,columna;
+        boolean magico=false;
         
 //Ingresamos los valorea a la matriz
-        for (int i = 0; i < cuadrado.length; i++) {
-            for (int j = 0; j < cuadrado.length; j++) {
-                do {
-                    System.out.println("Ingrese número del 1 al 9 para la fila ["+i+"] columna ["+j+"]");
-                    cuadrado[i][j]=leer.nextInt();
-                    if(cuadrado[i][j]<1 || cuadrado[i][j]>9){
-                        System.out.println("El número no es válido. Ingresar nuevamente.");
-                    }
-                } while (cuadrado[i][j]<1 || cuadrado[i][j]>9);
-                
-            }
+for (int i = 0; i < cuadrado.length; i++) {
+    for (int j = 0; j < cuadrado.length; j++) {
+        System.out.println("Ingrese número del 1 al 9 para la fila ["+i+"] columna ["+j+"]");
+        cuadrado[i][j]=leer.nextInt();
         }
-//Realizamos la suma dentro de diagonal
+        }
+//Realizamos la suma de la diagonal principal
 for (int i = 0; i < cuadrado.length; i++) {
     for (int j = 0; j < cuadrado.length; j++) {
         if(i==j){
@@ -44,17 +38,54 @@ for (int i = 0; i < cuadrado.length; i++) {
         }
     }           
 }
-System.out.println("El valor de la diagonal es "+diagP);
+cont=0;
+do {
+    
+    fila = sumaFilas(cuadrado,cont);
+    cont+=1;
+    if(fila==diagP){
+        magico=true;
+    }else{
+        magico=false;
+    }
+    } while (magico==true && cont<3);
 
-//Comparamos las filas 1
+cont=0;
+while(magico==true && cont<3){    
+columna = sumaColumnas(cuadrado,cont);
+    cont+=1;
+    if(fila==diagP){
+        magico=true;
+    }else{
+        magico=false;
+    }
+    }
+while(magico==true){
+if((cuadrado[0][2]+cuadrado[1][1]+cuadrado[2][0])==diagP){
+    magico=true;
+}else{
+magico=false;}
+}
+     
 
-}   
-    public static int sumaFilas(int cuadrado[][],int i){
+}
+    
+    ////////////SUMA FILAS/////////////
+    public static int sumaFilas(int m[][],int i){
     int sumarFila=0;
-        for (int j = 0; j < cuadrado.length; j++) {
-            sumarFila= sumarFila + cuadrado[i][j];
+        for (int j = 0; j < m.length; j++) {
+            sumarFila= sumarFila + m[i][j];
             
         }
         return sumarFila;
+    }
+    
+    ////////////SUMA COLUMNAS/////////////
+    public static int sumaColumnas(int m[][],int j){
+    int sumarColumna=0;
+        for (int i = 0; i < m.length; i++) {
+            sumarColumna= sumarColumna + m[i][j];            
+        }
+        return sumarColumna;
     }
 }
