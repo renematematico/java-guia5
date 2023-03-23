@@ -15,6 +15,16 @@ public class Ejercicio1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        int vector[]=new int[100];
+        
+        for (int i = 0; i < vector.length ; i++) {
+            vector[i]=100-i;
+        }
+        
+        for (int i = 0; i < vector.length; i++) {
+            System.out.print("["+vector[i]+"]");
+        }
+        System.out.println("");        
     }
     
 }
