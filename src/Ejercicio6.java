@@ -30,6 +30,11 @@ for (int i = 0; i < cuadrado.length; i++) {
         cuadrado[i][j]=leer.nextInt();
         }
         }
+
+//Mostramos la matriz
+
+mostrarMatriz(cuadrado);
+
 //Realizamos la suma de la diagonal principal
 for (int i = 0; i < cuadrado.length; i++) {
     for (int j = 0; j < cuadrado.length; j++) {
@@ -50,22 +55,22 @@ do {
     }
     } while (magico==true && cont<3);
 
-cont=0;
-while(magico==true && cont<3){    
-columna = sumaColumnas(cuadrado,cont);
-    cont+=1;
-    if(fila==diagP){
-        magico=true;
-    }else{
-        magico=false;
-    }
-    }
-while(magico==true){
-if((cuadrado[0][2]+cuadrado[1][1]+cuadrado[2][0])==diagP){
-    magico=true;
-}else{
-magico=false;}
-}
+//cont=0;
+//while(magico==true && cont<3){    
+//columna = sumaColumnas(cuadrado,cont);
+//    cont+=1;
+//    if(fila==diagP){
+//        magico=true;
+//    }else{
+//        magico=false;
+//    }
+//    }
+//while(magico==true){
+//if((cuadrado[0][2]+cuadrado[1][1]+cuadrado[2][0])==diagP){
+//    magico=true;
+//}else{
+//magico=false;}
+//}
      
 
 }
@@ -87,5 +92,17 @@ magico=false;}
             sumarColumna= sumarColumna + m[i][j];            
         }
         return sumarColumna;
+    }
+    ////////////MOSTRAR MATRIZ/////////////
+    public static void mostrarMatriz(int m[][]){
+        for (int i = 0; i < m.length; i++) {
+            System.out.print("|");
+            for (int j = 0; j < m.length; j++) {
+                System.out.print(m[i][j]);
+            }
+            System.out.print("|");
+            System.out.println("");
+        }
+    
     }
 }
