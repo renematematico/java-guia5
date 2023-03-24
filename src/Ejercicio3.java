@@ -12,6 +12,8 @@ import java.util.Scanner;
  * @author crist
  */
 public class Ejercicio3 {
+    /*Recorrer un vector de N enteros contabilizando cuántos números son 
+    de 1 dígito, cuántos de 2 dígitos, etcétera (hasta 5 dígitos).*/
 
     /**
      * @param args the command line arguments

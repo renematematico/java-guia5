@@ -9,7 +9,9 @@
  * @author crist
  */
 public class Ejercicio1 {
-
+/*Realizar un algoritmo que llene un vector con los 100 primeros números 
+    enteros y los muestre por pantalla en orden descendente.
+*/
     /**
      * @param args the command line arguments
      */
