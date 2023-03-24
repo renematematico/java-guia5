@@ -18,83 +18,43 @@ public class Ejercicio6 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Scanner leer=new Scanner (System.in);
-        int cuadrado [][]=new int[3][3];
-        int diagP=0,cont=0,fila,columna;
-        boolean magico=false;
-        
-//Ingresamos los valorea a la matriz
-for (int i = 0; i < cuadrado.length; i++) {
-    for (int j = 0; j < cuadrado.length; j++) {
-        System.out.println("Ingrese número del 1 al 9 para la fila ["+i+"] columna ["+j+"]");
-        cuadrado[i][j]=leer.nextInt();
-        }
-        }
+       int matriz [][],filas,columnas,n;
+       n=3;
+              
+       System.out.println("- - - MATRIZ MÁGICA - - -");
+        System.out.println("");
+        matriz=new int[n][n];
+        filas=n;
+        columnas=n;
+
+//Rellenamos la matriz
+        rellenarMatriz(matriz,filas,columnas);
 
 //Mostramos la matriz
+        mostrarMatriz(matriz);
 
-mostrarMatriz(cuadrado);
-
-//Realizamos la suma de la diagonal principal
-for (int i = 0; i < cuadrado.length; i++) {
-    for (int j = 0; j < cuadrado.length; j++) {
-        if(i==j){
-        diagP=diagP+cuadrado[i][j];
-        }
-    }           
-}
-cont=0;
-do {
-    
-    fila = sumaFilas(cuadrado,cont);
-    cont+=1;
-    if(fila==diagP){
-        magico=true;
-    }else{
-        magico=false;
-    }
-    } while (magico==true && cont<3);
-
-//cont=0;
-//while(magico==true && cont<3){    
-//columna = sumaColumnas(cuadrado,cont);
-//    cont+=1;
-//    if(fila==diagP){
-//        magico=true;
-//    }else{
-//        magico=false;
-//    }
-//    }
-//while(magico==true){
-//if((cuadrado[0][2]+cuadrado[1][1]+cuadrado[2][0])==diagP){
-//    magico=true;
-//}else{
-//magico=false;}
-//}
-     
+//Hacemos la prueba de MATRIZ MÁGICA
+matrizMagica(matriz,filas,columnas);
 
 }
-    
-    ////////////SUMA FILAS/////////////
-    public static int sumaFilas(int m[][],int i){
-    int sumarFila=0;
-        for (int j = 0; j < m.length; j++) {
-            sumarFila= sumarFila + m[i][j];
-            
+
+///////////// RELLENAR MATRIZ //////////////
+public static void rellenarMatriz(int m[][],int f,int c){
+    Scanner leer=new Scanner (System.in);
+        
+    System.out.println("Ingresar números del 1 al 9 \n para rellenar la matriz");
+    for (int i = 0; i < f; i++) {
+        for (int j = 0; j < c; j++) {
+            do {
+                System.out.println("Elemento de la fila ["+(i+1)+"] columna ["+(j+1)+"]");
+                m[i][j]=leer.nextInt();
+            } while (m[i][j]<0 && m[i][j]>9);              
         }
-        return sumarFila;
     }
+}
     
-    ////////////SUMA COLUMNAS/////////////
-    public static int sumaColumnas(int m[][],int j){
-    int sumarColumna=0;
-        for (int i = 0; i < m.length; i++) {
-            sumarColumna= sumarColumna + m[i][j];            
-        }
-        return sumarColumna;
-    }
-    ////////////MOSTRAR MATRIZ/////////////
-    public static void mostrarMatriz(int m[][]){
+//////////// MOSTRAR MATRIZ /////////////
+public static void mostrarMatriz(int m[][]){
         for (int i = 0; i < m.length; i++) {
             System.out.print("|");
             for (int j = 0; j < m.length; j++) {
@@ -102,7 +62,79 @@ do {
             }
             System.out.print("|");
             System.out.println("");
-        }
-    
+        }    
     }
+    
+//////////// MATRIZ MÁGICA /////////////
+public static void matrizMagica(int m[][],int f, int c){
+int num=0,sc=0,sf=0,ssd=0;
+boolean prueba=true,pruebaSuma=false;
+
+//Sumamos los elementos de la diagonal principal y lo guardamos en "num"
+    for (int i = 0; i < f; i++) {
+        for (int j = 0; j < c; j++) {
+            if(i==j){
+            num=num+m[i][j];
+            }
+        }
+    } System.out.println("Suma de diagonal Principal "+num);
+
+    for (int i = 0; i < f; i++) {
+        sf=0;
+        //Suma los elementos de toda la fila
+        for (int j = 0; j < c; j++) {
+            sf=sf+m[i][j];
+        }
+//Si la suma de cada fila coincide con "num" mantiene verdadero a prueba.
+        if(sf==num){
+        prueba=true;
+        }else{// Si alguna fila no suma lo mismo que "num" hace falsa la variable prueba.
+        prueba=false;}
+    } System.out.println("Suma de filas = "+sf);
+    
+    if(prueba){//Si la variable prueba es verdadera, sale del bucle anterior entra en este condicional.
+        for (int i = 0; i < f; i++) {
+            sc=0;
+            for (int j = 0; j < c; j++) {
+                sc=sc+m[j][i];
+            }}}
+//Si la suma de cada columna coincide con "num" mantiene verdadero a prueba.
+        if(sc==num){
+        prueba=true;
+        }else{// Si alguna columna no suma lo mismo que "num" hace falsa la variable prueba.
+        prueba=false;}
+        System.out.println("Suma de columnas = "+sc);
+        
+//Si la prueba de las columnas se mantiene verdadera pasamos a este condicional.
+if(prueba){
+    for (int i = 0; i < f; i++) {
+        for (int j = 0; j < c; j++) {
+            if((i+j)==c-1){
+            ssd=ssd+m[i][j];
+            }
+        }
+        if(ssd==num){
+        prueba=true;
+        }else{
+        prueba=false; //Si la suma de la diagonal no coincide con la principal sale del bucle
+        }
+    }
+}System.out.println("Suma de segunda diagonal = "+ssd);
+
+if(prueba){
+    System.out.println("=============================");
+    System.out.println("La matriz ingresada ES MAGICA");
+    System.out.println("=============================");
+}else{
+    System.out.println("================================");
+    System.out.println("La matriz ingresada NO ES MAGICA");
+    System.out.println("================================");
 }
+        
+
+
+}
+}
+    
+
+
