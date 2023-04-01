@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author crist
  */
-public class ExtrasEjercicio4Compa {
+public class ExtrasEjercicio4 {
 
     /**
      * @param args the command line arguments
@@ -27,6 +27,7 @@ public class ExtrasEjercicio4Compa {
         int aprob = 0;
         int desap = 0;
         for (int i = 0; i < 10; i++) {
+            System.out.println("=======================================");
             System.out.println("Ingrese las notas del alumno " + (i + 1));
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
@@ -52,8 +53,12 @@ public class ExtrasEjercicio4Compa {
             }
             matriz[i][4] = (nota1 + nota2 + nota3 + nota4);
                 if (matriz[i][4] >= 7) {
+                    System.out.println("El alumno Nº"+(i+1)+" está APROBADO");
+                    System.out.println("Calificación final = "+matriz[i][4]);
                     aprob++;
                 } else {
+                    System.out.println("El alumno Nº"+(i+1)+" está DESAPROBADO");
+                    System.out.println("Calificación final = "+matriz[i][4]);
                     desap++;
                 }
         }

@@ -24,22 +24,24 @@ public class ExtrasEjercicio3 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        //Creamos la variable n que guarda la dimensión del vector
-        int n;
+        /////////VARIABLES
+        int n, vector[];
         Scanner leer=new Scanner(System.in);        
         
+        //INGRESAMOS LA DIMENSIÓN DEL VECTOR
         System.out.println("Ingrese la dimensión del vector.");
         n=leer.nextInt();
         
-        /*Creamos un vector y dentro de el guardamos el 
+        /*GUARDAMOS DENTRO DEL VECTOR el 
         retorno de la función llenarVector(n)*/
-        int vector[] = llenarVector(n);
+        vector = llenarVector(n);
         
         mostrarVector(vector,n);
         
         
     }
     
+    ///////////FUNCIÓN QUE LLENA EL VECTOR CON NÚMEROS ALEATORIOS
     public static int[] llenarVector(int n){
         int v[]= new int[n];
         
@@ -48,11 +50,14 @@ public class ExtrasEjercicio3 {
         }                
         return v;
     }
-    
+    ///////////FUNCIÓN QUE MUESTRA EL VECTOR
     public static void mostrarVector(int v[],int n){
+        System.out.println("Los elementos del vector son:");
+        System.out.print("Vector = {");
         for (int i = 0; i < n; i++) {
             System.out.print("["+v[i]+"]");            
         }
+        System.out.print("}");
         System.out.println("");
     }
     
